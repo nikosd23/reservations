@@ -1,0 +1,8 @@
+.custom-signin {
+    background: -moz-linear-gradient(center top , #FFFFFF 0pt, #DDDDDD 100%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #EEEEEE;
+    border-right: 1px solid #EEEEEE;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px 4px 4px 4px;
+}
