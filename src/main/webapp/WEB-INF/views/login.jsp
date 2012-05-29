@@ -26,7 +26,7 @@
 			</div>
 			<form class="well form-inline" action="<c:url value='/j_spring_security_check'/>" method="post">
 				<input type="text" class="input-small" placeholder="Username..."name="j_username">
-				<input type="text" class="input-small"  placeholder="Password..."name="j_password">
+				<input type="password" class="input-small"  placeholder="Password..."name="j_password">
 				<button class="btn btn-primary" type="submit">Sign in</button>			
 			</form>
 		</div>

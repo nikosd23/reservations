@@ -7,17 +7,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/mvc     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- Configuration for the customer management dispatcher servlet -->
-	<context:component-scan base-package="com.oaka.crm"/>
-
-	<mvc:annotation-driven/>
+	<!-- The controllers are autodetected POJOs labeled with the @Controller annotation. -->
+    <context:component-scan base-package="com.oaka.crm" use-default-filters="false">
+        <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+    
+    <!-- Turns on support for mapping requests to Spring MVC @Controller methods -->
+    <mvc:annotation-driven/>
 	
-	<mvc:interceptors>
+<!-- 	<mvc:interceptors> -->
 		<!-- An interceptor which keeps a hibernate session open to allow lazy loading of form backing objects -->
-		<bean class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
-		    <property name="sessionFactory" ref="sessionFactory"/>
-		</bean>
-	</mvc:interceptors>
+<!-- 		<bean class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor"> -->
+<!-- 		    <property name="sessionFactory" ref="sessionFactory"/> -->
+<!-- 		</bean> -->
+<!-- 	</mvc:interceptors> -->
 
 	<!-- Simple redirects to internal resources; URL path substring becomes view name (e.g. '/login.htm' -> 'login') -->
 	<mvc:view-controller path="/login.htm"/>
