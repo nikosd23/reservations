@@ -24,7 +24,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "customer.count",
-				query = "Select count(c) from Customer c ")	
+				query = "Select count(c) from Customer c "),
+	@NamedQuery(name = "customer.getTrainings",
+				query = "Select r.trainingId from Reservation r where r.customerId = :customerId ")
 })
 public class Customer {
 	
