@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/util 
+                           http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	
+	<security:http pattern="/css/**" security="none"/>
+  	<security:http pattern="/login.jsp*" security="none"/>
+  	<security:http pattern="/reservations/login.jsp*" security="none"/>
+  	<security:http pattern="/reservations/denied.htm" security="none"/>
+	
+	<security:http access-denied-page="/reservations/denied.htm">
+		<security:form-login login-page="/reservations/login.htm"
+			authentication-failure-url="/reservations/login.htm?login_error=true" 
+			default-target-url="/reservations/dashboard.htm"/>
+		<security:intercept-url pattern="/customers/edit*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/customers/customer*" access="ROLE_ADMIN,ROLE_MEMBER" />
+		<security:intercept-url pattern="/reservations/dashboard*" access="ROLE_ADMIN,ROLE_MEMBER" />
+<!-- 		<security:intercept-url pattern="/customers/**" access="IS_AUTHENTICATED_FULLY" /> -->
+		<security:logout/>
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder hash="md5" >
+				<security:salt-source system-wide="MySalt"/>
+			</security:password-encoder>
+			<security:user-service properties="/WEB-INF/users.properties" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+<!-- 	<security:global-method-security secured-annotations="enabled"> -->
+<!-- 		<security:protect-pointcut -->
+<!-- 			expression="execution(* com.oaka..*Service.*(..))" -->
+<!-- 			access="ROLE_USER" /> -->
+<!-- 	</security:global-method-security> -->
+	
+	<bean id="customAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"/>
+
+</beans>
