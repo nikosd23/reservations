@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,9 +17,17 @@ import javax.persistence.TemporalType;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.format.annotation.DateTimeFormat;
-
+//Select r.trainingId from Reservation r where r.customerId = :customerId
 @Entity
 @Table(name="CUSTOMER_TRAINING")
+@NamedQueries({
+	@NamedQuery(name = "reservation.findAll",
+				query = "select r from Reservation r"),
+	@NamedQuery(name = "reservation.findByTrainingId",
+				query = "select r from Reservation r where r.trainingId = :trainingId"),
+	@NamedQuery(name = "reservation.findByCustomerId",
+				query = "select r from Reservation r where r.customerId = :customerId"),
+})
 public class Reservation implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

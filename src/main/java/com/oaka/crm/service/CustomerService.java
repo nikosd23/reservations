@@ -84,6 +84,7 @@ public class CustomerService {
 	}
 	
 	public List<Training> getAvailableTrainingsToBook(){
+		//TODO add implementation
 		return null;
 	}
 

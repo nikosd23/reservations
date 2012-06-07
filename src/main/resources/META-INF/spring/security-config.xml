@@ -31,7 +31,7 @@
 			<security:password-encoder hash="md5" >
 				<security:salt-source system-wide="MySalt"/>
 			</security:password-encoder>
-			<security:user-service properties="/WEB-INF/users.properties" />
+			<security:user-service properties="users.properties" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
