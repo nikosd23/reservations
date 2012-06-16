@@ -1,1 +1,1 @@
-Hi My name is georg and i want to collaborate on this project
+Hi My name is george and i want to collaborate on this project
